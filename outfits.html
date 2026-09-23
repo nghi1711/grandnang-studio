@@ -1,0 +1,36 @@
+<!--
+    GHI CHÚ: Các thẻ trang phục trong mỗi danh mục giờ được render động bởi
+    renderOutfitCategories() trong outfits.js (đọc từ OUTFIT_CATEGORY_DEFAULTS
+    làm dữ liệu mặc định, ghi đè bởi Firestore collection "outfit_categories"
+    nếu Admin/Thành viên đã thêm/sửa/xoá). Bật "Chế độ sửa ảnh" (nút góc dưới
+    phải) để thêm/sửa/xoá trang phục ngay tại đây, không cần vào trang quản trị.
+-->
+<div class="outfits-container-wrapper">
+    <!-- HỘP CĂN GIỮA Y HỆT FORM ĐẶT LỊCH -->
+    <div class="outfits-form-box">
+        
+        <div class="outfits-box-header">
+            <h2>HỆ THỐNG TRANG PHỤC KỶ YẾU</h2>
+            <p>Hãy tham khảo ảnh mẫu và các concept độc quyền của ekip nhé!</p>
+        </div>
+
+        <!-- DANH MỤC 1: ĐỒ TRUYỀN THỐNG -->
+        <div class="outfit-category-block">
+            <h3 class="outfit-category-title"><i class="fa-solid fa-suitcase-rolling"></i> Đồ Truyền Thống Thuê Thêm</h3>
+            <div class="outfit-grid-4" id="outfitGrid-truyen-thong"></div>
+        </div>
+
+        <!-- DANH MỤC 2: CONCEPT THANH XUÂN -->
+        <div class="outfit-category-block">
+            <h3 class="outfit-category-title"><i class="fa-solid fa-camera-retro"></i> Concept Thanh Xuân</h3>
+            <div class="outfit-grid-4" id="outfitGrid-concept"></div>
+        </div>
+
+        <!-- DANH MỤC 3: VEST THANH XUÂN -->
+        <div class="outfit-category-block">
+            <h3 class="outfit-category-title"><i class="fa-solid fa-user-tie"></i> Vest Thanh Xuân Thuê Thêm</h3>
+            <div class="outfit-grid-4" id="outfitGrid-vest"></div>
+        </div>
+
+    </div>
+</div>

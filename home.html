@@ -1,0 +1,103 @@
+<div class="grandnang-home">
+    
+    <!-- BANNER CHÍNH - SLIDER -->
+    <div class="hero-section-home">
+        <div class="hero-slides-container">
+            <div class="hero-slide active" data-slot="home-hero-1" style="background-image: url('banner.jpg');"></div>
+            <div class="hero-slide" data-slot="home-hero-2" style="background-image: url('ảnh 2.jpg');"></div>
+            <div class="hero-slide" data-slot="home-hero-3" style="background-image: url('ảnh 3.jpg');"></div>
+            <div class="hero-slide" data-slot="home-hero-4" style="background-image: url('ảnh 4.jpg');"></div>
+            <div class="hero-slide" data-slot="home-hero-5" style="background-image: url('ảnh 5.jpg');"></div>
+        </div>
+        
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content fade-in-up">
+            <h1 class="hero-title">GRANDNANG STUDIO</h1>
+            <p class="hero-subtitle">Nơi thanh xuân dừng lại, chắp cánh những giấc mơ</p>
+            <p class="hero-desc">Chúng ta diệu kỳ của năm 18 tuổi xứng đáng được lưu giữ bằng những thước phim điện ảnh rực rỡ nhất.</p>
+            <button class="btn-hero-cta" onclick="globalSwitchPage('booking')">Viết Tiếp Câu Chuyện <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div class="hero-dots">
+            <span class="hero-dot active" onclick="currentSlide(0)"></span>
+            <span class="hero-dot" onclick="currentSlide(1)"></span>
+            <span class="hero-dot" onclick="currentSlide(2)"></span>
+            <span class="hero-dot" onclick="currentSlide(3)"></span>
+            <span class="hero-dot" onclick="currentSlide(4)"></span>
+        </div>
+    </div>
+
+    <!-- VỀ CHÚNG TÔI -->
+    <div class="about-section scroll-trigger">
+        <div class="about-text">
+            <h2 class="section-heading">VỀ CHÚNG TÔI</h2>
+            <h3 class="about-slogan">Hơn cả một bức ảnh, đó là những thước phim của thanh xuân.</h3>
+            <p>Ba năm cấp 3 trôi qua như một cái chớp mắt. Những bài kiểm tra dang dở, những tà áo dài bay trong gió, tiếng trống trường rộn rã... tất cả rồi sẽ hóa thành kỷ niệm.</p>
+            <p>Grandnang Studio ra đời không chỉ để bấm máy, mà để <strong>"Kể lại câu chuyện của chính lớp bạn"</strong>. Mỗi concept, mỗi góc máy đều được chúng tôi chăm chút tỉ mỉ, để 5 hay 10 năm sau nhìn lại, bạn vẫn thấy mình đang cười rạng rỡ giữa sân trường rực nắng.</p>
+        </div>
+        <div class="about-image-wrapper">
+            <img src="tap-the.jpg" alt="Tập thể lớp" class="about-img main-img" data-slot="home-about-main">
+            <img src="tho-anh.jpg" alt="Ekip làm việc" class="about-img sub-img" data-slot="home-about-sub">
+        </div>
+    </div>
+
+    <!-- KHO ẢNH THANH XUÂN (FULL ẢNH GỐC + TRÁM + 2 ẢNH CUỐI) -->
+    <div class="concept-section scroll-trigger">
+        <div class="text-center" style="margin-bottom: 50px;">
+            <h2 class="section-heading" style="justify-content: center;">KHO ẢNH THANH XUÂN (KỶ YẾU TRỌN VẸN)</h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">Bố cục đan xen linh hoạt từng khung hình điện ảnh</p>
+        </div>
+        
+        <!-- Lưới ảnh được render động bởi renderHomeGallery() trong home.js.
+             Ảnh mặc định lấy từ HOME_GALLERY_DEFAULT_RAW; Admin/Thành viên bật
+             "Chế độ sửa ảnh" (nút góc dưới phải) để thêm/sửa/xoá ảnh ngay tại đây. -->
+        <div class="masonry-container" id="homeGalleryGrid"></div>
+    </div>
+
+    <!-- DẢI BANNER TÁCH BIỆT CẢM XÚC -->
+    <div class="parallax-banner scroll-trigger">
+        <img src="banner-giua.jpg" alt="Thanh xuân" class="parallax-bg" data-slot="home-parallax">
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content">
+            <h3>MỖI KHOẢNH KHẮC LÀ MỘT THƯỚC PHIM</h3>
+            <p>Không gò bó, không nhàm chán. Chúng tôi lưu giữ thanh xuân theo cách điện ảnh nhất.</p>
+        </div>
+    </div>
+
+    <!-- TẠI SAO CHỌN GRANDNANG -->
+    <div class="features-section scroll-trigger">
+        <h2 class="section-heading text-center" style="justify-content: center; margin-bottom: 50px;">TẠI SAO CHỌN GRANDNANG?</h2>
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feat-icon"><i class="fa-solid fa-camera-retro"></i></div>
+                <h4>Ekip Tận Tâm, Chuyên Nghiệp</h4>
+                <p>Thợ ảnh gen Z lăn xả, bắt trọn từng khoảnh khắc tự nhiên nhất, không gò bó tạo dáng cứng nhắc.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feat-icon"><i class="fa-solid fa-shirt"></i></div>
+                <h4>Trang Phục Cực Trất</h4>
+                <p>Kho đồ khổng lồ, update liên tục các mẫu Concept mới nhất từ Thái Lan, Trung Quốc đến Vintage.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <h4>Màu Ảnh "Độc Bản"</h4>
+                <p>Chỉnh màu theo ý thích của lớp, làm mịn da thần thánh, trả file nhanh chóng không để lớp chờ đợi.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feat-icon"><i class="fa-regular fa-calendar-check"></i></div>
+                <h4>Lịch Trình Khoa Học</h4>
+                <p>Hệ thống tự động tính toán Timeline chuẩn xác đến từng phút, không lo trễ giờ, không mệt mỏi.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA CUỐI TRANG -->
+    <div class="cta-section scroll-trigger">
+        <div class="cta-content">
+            <h2>Hãy để năm tháng ấy trở thành bất tử!</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1rem; opacity: 0.9;">Lịch chụp tháng này đang trống rất ít. Đừng để lỡ mất thanh xuân của lớp mình nhé!</p>
+            <button class="btn-hero-cta" onclick="globalSwitchPage('booking')" style="font-size: 1.2rem; padding: 15px 40px;">ĐẶT LỊCH NGAY HÔM NAY</button>
+        </div>
+    </div>
+</div>

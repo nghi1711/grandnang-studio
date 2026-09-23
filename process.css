@@ -1,0 +1,294 @@
+/* Tái sử dụng biến màu */
+:root {
+    --bg-dark: #FDF8ED;
+    --bg-card: #F2EBD4;
+    --border-color: #E5DCC3;
+    --gold: #D23822;
+    --text-main: #1A1A1A;
+    --text-muted: #666666;
+}
+
+.grandnang-process-page {
+    padding: 60px 5% 100px;
+    min-height: 100vh;
+    background-color: var(--bg-dark);
+}
+
+.process-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+.process-title {
+    color: var(--gold);
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+.process-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* THANH TRACKER QUÁ TRÌNH */
+.process-tracker-container {
+    max-width: 900px;
+    margin: 0 auto 50px;
+    background-color: rgba(242, 235, 212, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px 30px;
+}
+
+.process-tracker {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tracker-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+.tracker-step.active {
+    opacity: 1;
+}
+
+.tracker-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-dark);
+    border: 2px solid var(--text-muted);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.tracker-step.active .tracker-circle {
+    border-color: var(--gold);
+    color: var(--gold);
+    box-shadow: 0 0 15px rgba(210, 56, 34, 0.2);
+}
+
+.tracker-label {
+    color: var(--text-main);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.tracker-step.active .tracker-label {
+    color: var(--gold);
+}
+
+.tracker-line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: var(--border-color);
+    margin: 0 10px;
+    position: relative;
+    top: -12px;
+    z-index: 1;
+}
+
+/* KHU VỰC HIỂN THỊ CÁC BƯỚC */
+.process-step-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: transparent;
+}
+
+/* ẨN TẤT CẢ CÁC BƯỚC TRỪ BƯỚC ACTIVE */
+.process-step-section {
+    display: none;
+    animation: fadeInStep 0.4s ease forwards;
+}
+.process-step-section.active {
+    display: block;
+}
+
+@keyframes fadeInStep {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* BỐ CỤC TRÁI - PHẢI CHO BƯỚC 1,3,4,5 */
+.step-layout {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 40px;
+}
+.step-layout.reverse {
+    flex-direction: row-reverse;
+}
+
+.step-text {
+    flex: 1;
+}
+.step-text h2 {
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+.step-text p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+}
+
+.step-img {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 300px;
+    border: 1px solid var(--border-color);
+}
+.step-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* NÚT BẤM NEXT / BACK */
+.step-actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+.center-actions {
+    justify-content: center;
+}
+
+.btn-step-next, .btn-step-back {
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+}
+.btn-step-next {
+    background-color: var(--gold);
+    color: #ffffff;
+}
+.btn-step-next:hover {
+    background-color: #B82C18;
+}
+.btn-step-back {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+.btn-step-back:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* ===== LƯỚI 4 MỤC CHỌN STYLE (BƯỚC 2) ===== */
+.style-options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.style-card {
+    background-color: #ffffff;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.style-card:hover {
+    border-color: rgba(210, 56, 34, 0.5);
+    transform: translateY(-5px);
+}
+.style-card.selected {
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(210, 56, 34, 0.15);
+}
+
+.style-img {
+    height: 200px;
+    width: 100%;
+}
+.style-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85);
+}
+.style-card.selected .style-img img {
+    filter: brightness(1);
+}
+
+.style-info {
+    padding: 15px;
+    text-align: center;
+}
+.style-info h4 {
+    color: var(--text-main);
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+}
+.style-card.selected .style-info h4 {
+    color: var(--gold);
+}
+.style-info p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Nút check V góc phải */
+.style-check {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--gold);
+    color: #ffffff;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+.style-card.selected .style-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .step-layout, .step-layout.reverse {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .style-options-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .tracker-label {
+        font-size: 0.7rem;
+    }
+}

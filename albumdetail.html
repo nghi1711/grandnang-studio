@@ -1,0 +1,26 @@
+<div class="albumdetail-page-wrapper">
+    <div class="albumdetail-container">
+
+        <div class="albumdetail-topbar">
+            <button class="albumdetail-back-btn" onclick="globalSwitchPage('album')">
+                <i class="fa-solid fa-arrow-left"></i> Quay Lại Danh Sách Album
+            </button>
+        </div>
+
+        <div class="albumdetail-header">
+            <h1 id="albumDetailPageTitle" class="albumdetail-title">Đang tải...</h1>
+            <p id="albumDetailPageCount" class="albumdetail-count"></p>
+        </div>
+
+        <div id="albumDetailMasonryGrid" class="albumdetail-masonry"></div>
+
+    </div>
+
+    <!-- LIGHTBOX XEM ẢNH PHÓNG TO -->
+    <div id="albumLightbox" class="albumdetail-lightbox">
+        <button class="albumdetail-lightbox-close" onclick="closeAlbumLightbox()"><i class="fa-solid fa-xmark"></i></button>
+        <button class="albumdetail-lightbox-nav albumdetail-lightbox-prev" onclick="navAlbumLightbox(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+        <img id="albumLightboxImg" src="" alt="">
+        <button class="albumdetail-lightbox-nav albumdetail-lightbox-next" onclick="navAlbumLightbox(1)"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+</div>

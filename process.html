@@ -1,0 +1,164 @@
+<div class="grandnang-process-page">
+    
+    <!-- Tiêu đề trang -->
+    <div class="process-header">
+        <h1 class="process-title">HÀNH TRÌNH LƯU GIỮ THANH XUÂN</h1>
+        <p class="process-subtitle">5 bước đơn giản để Grandnang Studio cùng bạn tạo nên kiệt tác tuổi 18.</p>
+    </div>
+
+    <!-- Đường dẫn Process (Thanh tiến trình ngang) -->
+    <div class="process-tracker-container">
+        <div class="process-tracker">
+            <div class="tracker-step active" id="tracker-1">
+                <div class="tracker-circle">1</div>
+                <span class="tracker-label">Tham Khảo</span>
+            </div>
+            <div class="tracker-line"></div>
+            <div class="tracker-step" id="tracker-2">
+                <div class="tracker-circle">2</div>
+                <span class="tracker-label">Chọn Style</span>
+            </div>
+            <div class="tracker-line"></div>
+            <div class="tracker-step" id="tracker-3">
+                <div class="tracker-circle">3</div>
+                <span class="tracker-label">Trang Phục</span>
+            </div>
+            <div class="tracker-line"></div>
+            <div class="tracker-step" id="tracker-4">
+                <div class="tracker-circle">4</div>
+                <span class="tracker-label">Thống Nhất</span>
+            </div>
+            <div class="tracker-line"></div>
+            <div class="tracker-step" id="tracker-5">
+                <div class="tracker-circle">5</div>
+                <span class="tracker-label">Đặt Lịch</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- KHU VỰC HIỂN THỊ CÁC BƯỚC -->
+    <div class="process-step-container">
+
+        <!-- ================= BƯỚC 1 ================= -->
+        <div class="process-step-section active" id="step-1">
+            <div class="step-layout">
+                <div class="step-text">
+                    <h2>BƯỚC 1: Dạo Quanh "Bảo Tàng" Cảm Hứng</h2>
+                    <p>Bắt đầu hành trình lưu giữ thanh xuân bằng việc khám phá kho ảnh mẫu đồ sộ của Grandnang Studio. Hàng trăm khoảnh khắc rực rỡ, những nụ cười tỏa nắng và các góc máy mang đậm chất điện ảnh đang chờ bạn.</p>
+                    <p>Hãy xem qua các tác phẩm trước đây của ekip để lưu lại những góc máy, bố cục hoặc màu ảnh mà lớp bạn cảm thấy rung động nhất.</p>
+                    <!-- Dán vào bên dưới đoạn <p>Hãy xem qua các tác phẩm...</p> -->
+<div style="margin-top: 20px; padding: 15px; background: rgba(223, 183, 108, 0.1); border: 1px dashed var(--gold); border-radius: 8px;">
+    <h4 style="color: var(--gold); margin-bottom: 10px; font-size: 1.05rem;"><i class="fa-solid fa-user-plus"></i> Tạo Tài Khoản Lớp</h4>
+    <p style="font-size: 0.9rem; margin-bottom: 15px; color: var(--text-muted);">Đại diện lớp bắt buộc phải có tài khoản để tiến hành đặt lịch và bảo lưu các thông tin quan trọng.</p>
+    <button style="background: var(--gold); color: #000; border: none; padding: 8px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.2s;" onclick="globalSwitchPage('account')">Đăng Ký Tài Khoản Ngay</button>
+</div>
+                    <div class="step-actions">
+                        <button class="btn-step-next" onclick="goToProcessStep(2)">Tiếp tục: Chọn Style <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="step-img"><img src="anh-1.jpg" alt="Tham khảo"></div>
+            </div>
+        </div>
+
+        <!-- ================= BƯỚC 2 (4 MỤC CHỌN STYLE) ================= -->
+        <div class="process-step-section" id="step-2">
+            <div class="step-text text-center">
+                <h2>BƯỚC 2: Định Hình Phong Cách (Style)</h2>
+                <p style="margin-bottom: 30px;">Kỷ yếu là câu chuyện của riêng lớp bạn. Hãy chọn 1 phong cách chủ đạo dưới đây để Ekip lên ý tưởng chuẩn xác nhất!</p>
+            </div>
+            
+            <div class="style-options-grid">
+                <!-- Style 1 -->
+                <div class="style-card" onclick="selectProcessStyle(this)">
+                    <div class="style-img"><img src="thai-lan.jpg" alt="Trong trẻo"></div>
+                    <div class="style-info">
+                        <h4>Thanh Xuân Vườn Trường</h4>
+                        <p>Nhẹ nhàng, nắng ấm, trong trẻo đúng chất tuổi 18.</p>
+                    </div>
+                    <div class="style-check"><i class="fa-solid fa-check"></i></div>
+                </div>
+                <!-- Style 2 -->
+                <div class="style-card" onclick="selectProcessStyle(this)">
+                    <div class="style-img"><img src="concept-be.jpg" alt="Vintage"></div>
+                    <div class="style-info">
+                        <h4>Retro & Vintage</h4>
+                        <p>Hoài niệm, đậm chất màu phim điện ảnh xưa cũ.</p>
+                    </div>
+                    <div class="style-check"><i class="fa-solid fa-check"></i></div>
+                </div>
+                <!-- Style 3 -->
+                <div class="style-card" onclick="selectProcessStyle(this)">
+                    <div class="style-img"><img src="concept-xam.jpg" alt="Cool Ngầu"></div>
+                    <div class="style-info">
+                        <h4>Cool Ngầu & Phá Cách</h4>
+                        <p>Tone màu đen xám bí ẩn, cá tính mạnh mẽ.</p>
+                    </div>
+                    <div class="style-check"><i class="fa-solid fa-check"></i></div>
+                </div>
+                <!-- Style 4 -->
+                <div class="style-card" onclick="selectProcessStyle(this)">
+                    <div class="style-img"><img src="anh-7.jpg" alt="Prom Night"></div>
+                    <div class="style-info">
+                        <h4>Sang Chảnh & Party</h4>
+                        <p>Đêm hội Prom Night, dạ hội và pháo hoa rực rỡ.</p>
+                    </div>
+                    <div class="style-check"><i class="fa-solid fa-check"></i></div>
+                </div>
+            </div>
+
+            <div class="step-actions center-actions">
+                <button class="btn-step-back" onclick="goToProcessStep(1)"><i class="fa-solid fa-arrow-left"></i> Quay lại</button>
+                <button class="btn-step-next" onclick="goToProcessStep(3)">Tiếp tục: Trang Phục <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- ================= BƯỚC 3 ================= -->
+        <div class="process-step-section" id="step-3">
+            <div class="step-layout reverse">
+                <div class="step-text">
+                    <h2>BƯỚC 3: Lựa Chọn Trang Phục</h2>
+                    <p>Khi đã có Style, lớp sẽ tiến hành chọn trang phục phù hợp. Kho đồ khổng lồ của Grandnang có đủ mọi concept từ Cổ phục truyền thống, Đồng phục Thái Lan đến Vest và Váy dạ hội.</p>
+                    <p>Lớp có thể kết hợp trang phục tự do của cá nhân với các phụ kiện hoặc đồ thuê thêm từ Studio để tối ưu chi phí mà vẫn đảm bảo độ "chất".</p>
+                    <div class="step-actions">
+                        <button class="btn-step-back" onclick="goToProcessStep(2)"><i class="fa-solid fa-arrow-left"></i> Quay lại</button>
+                        <button class="btn-step-next" onclick="goToProcessStep(4)">Tiếp tục: Thống Nhất <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="step-img"><img src="vest-6-cuc.jpg" alt="Trang phục"></div>
+            </div>
+        </div>
+
+        <!-- ================= BƯỚC 4 ================= -->
+        <div class="process-step-section" id="step-4">
+            <div class="step-layout">
+                <div class="step-text">
+                    <h2>BƯỚC 4: Bàn Bạc & Thống Nhất Tập Thể</h2>
+                    <p>Một bộ ảnh kỷ yếu trọn vẹn nhất là khi tất cả các thành viên đều nở nụ cười hạnh phúc. Ban cán sự hãy mang ý tưởng (Style + Trang phục) ra trước lớp để cùng thảo luận và chốt phương án cuối cùng.</p>
+                    <p>Sự đồng lòng của 100% thành viên chính là chìa khóa quan trọng nhất để ngày bấm máy diễn ra bùng nổ năng lượng!</p>
+                    <div class="step-actions">
+                        <button class="btn-step-back" onclick="goToProcessStep(3)"><i class="fa-solid fa-arrow-left"></i> Quay lại</button>
+                        <button class="btn-step-next" onclick="goToProcessStep(5)">Tiếp tục: Đặt Lịch <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="step-img"><img src="tap-the.jpg" alt="Thống nhất"></div>
+            </div>
+        </div>
+
+        <!-- ================= BƯỚC 5 ================= -->
+        <div class="process-step-section" id="step-5">
+            <div class="step-layout reverse">
+                <div class="step-text">
+                    <h2>BƯỚC 5: Tiến Hành Đặt Lịch & Bấm Máy</h2>
+                    <p>Mọi thứ đã sẵn sàng! Chuyến tàu thanh xuân không chờ đợi ai cả. Chỉ với vài thao tác đơn giản, lớp bạn đã có thể chốt ngay ngày giờ đẹp nhất với Grandnang Studio.</p>
+                    <p>Hệ thống sẽ tự động khởi tạo Timeline chụp chi tiết. Việc duy nhất lớp bạn cần làm là mang theo một tinh thần rực rỡ nhất để cùng chúng tôi tạo ra kiệt tác!</p>
+                    <div class="step-actions">
+                        <button class="btn-step-back" onclick="goToProcessStep(4)"><i class="fa-solid fa-arrow-left"></i> Quay lại</button>
+                        <button class="btn-hero-cta" onclick="globalSwitchPage('booking')">Tiến Hành Đặt Lịch Ngay</button>
+                    </div>
+                </div>
+                <div class="step-img"><img src="anh-16.jpg" alt="Đặt lịch"></div>
+            </div>
+        </div>
+
+    </div>
+</div>

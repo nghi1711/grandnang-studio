@@ -1,0 +1,177 @@
+:root {
+    --bg-dark: #FDF8ED;
+    --bg-card: #F2EBD4;
+    --border-color: #E5DCC3;
+    --gold: #D23822;
+    --text-main: #000000;
+    --text-muted: #555555;
+}
+
+.camnang-page-wrapper {
+    padding: 60px 20px 100px;
+    min-height: 100vh;
+    background-color: var(--bg-dark);
+}
+
+.camnang-container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.camnang-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.camnang-title {
+    color: var(--text-main);
+    font-size: 2.1rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.camnang-subtitle {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.camnang-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.camnang-item {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.camnang-item.active {
+    border-color: var(--gold);
+}
+
+.camnang-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.camnang-item-header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.camnang-item-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(210, 56, 34, 0.1);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.camnang-item-header h3 {
+    color: var(--text-main);
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.camnang-item.active .camnang-item-header h3 {
+    color: var(--gold);
+}
+
+.camnang-chevron {
+    color: var(--text-muted);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 15px;
+}
+
+.camnang-item.active .camnang-chevron {
+    transform: rotate(180deg);
+    color: var(--gold);
+}
+
+.camnang-item-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 25px;
+}
+
+.camnang-item.active .camnang-item-body {
+    max-height: 1400px;
+    padding: 0 25px 25px 25px;
+}
+
+.camnang-item-body h4 {
+    color: var(--text-main);
+    font-size: 0.95rem;
+    margin: 18px 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+}
+
+.camnang-item-body h4:first-child {
+    margin-top: 0;
+}
+
+.camnang-item-body ul {
+    list-style: none;
+    margin: 0 0 5px 0;
+    padding: 0;
+}
+
+.camnang-item-body ul li {
+    position: relative;
+    padding-left: 22px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.camnang-item-body ul li::before {
+    content: "\f058";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--gold);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 0.85rem;
+}
+
+.camnang-item-body ul li strong {
+    color: var(--text-main);
+}
+
+.camnang-item-body p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0 0 5px 0;
+}
+
+@media (max-width: 600px) {
+    .camnang-item-header { padding: 16px 18px; }
+    .camnang-item.active .camnang-item-body { padding: 0 18px 20px 18px; }
+    .camnang-item-header h3 { font-size: 0.95rem; }
+}

@@ -1,0 +1,26 @@
+.account-page-wrapper { padding: 60px 20px; min-height: 80vh; background-color: var(--bg-dark); }
+.account-container { max-width: 900px; margin: 0 auto; }
+.auth-section { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; max-width: 550px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.auth-tabs { display: flex; border-bottom: 2px solid var(--border-color); margin-bottom: 25px; }
+.auth-tab { flex: 1; background: transparent; border: none; color: var(--text-muted); padding: 15px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.3s; }
+.auth-tab.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+.auth-form { display: none; animation: fadeInStep 0.3s ease forwards; }
+.auth-form.active { display: block; }
+.forgot-pass { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 15px; cursor: pointer; }
+.forgot-pass:hover { color: var(--gold); text-decoration: underline; }
+.password-input-wrapper { position: relative; display: flex; align-items: center; }
+.password-input-wrapper input { width: 100%; padding-right: 42px !important; }
+.toggle-password-icon { position: absolute; right: 14px; color: var(--text-muted); cursor: pointer; font-size: 0.95rem; transition: color 0.2s ease; }
+.toggle-password-icon:hover { color: var(--gold); }
+.dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 1px dashed var(--gold); }
+.btn-logout { background: transparent; border: 1px solid #ff6b6b; color: #ff6b6b; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+.btn-logout:hover { background: rgba(255,107,107,0.1); }
+.dashboard-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; }
+.profile-card, .booking-history-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 25px; }
+.profile-card h3, .booking-history-card h3 { color: var(--gold); margin-bottom: 15px; font-size: 1.1rem; }
+.profile-card p { color: var(--text-muted); margin-bottom: 10px; font-size: 0.95rem; }
+.profile-card p strong { color: #fff; }
+.booking-item { background-color: #021a15; border-left: 4px solid var(--gold); padding: 15px; border-radius: 4px; margin-bottom: 15px; }
+.booking-item h4 { color: #fff; margin: 0 0 5px 0; }
+.booking-item .status { color: #4ade80; font-size: 0.8rem; font-weight: bold; display: inline-block; padding: 3px 8px; background: rgba(74,222,128,0.1); border-radius: 20px; margin-bottom: 10px;}
+@media (max-width: 768px) { .dashboard-grid { grid-template-columns: 1fr; } }

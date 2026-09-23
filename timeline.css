@@ -1,0 +1,47 @@
+/* timeline.css */
+.time-input {
+    background: rgba(210, 56, 34, 0.1);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 8px 5px;
+    border-radius: 4px;
+    font-weight: bold;
+    width: auto;
+    font-size: 0.95rem;
+    outline: none;
+    cursor: pointer;
+}
+.time-input:read-only {
+    background: transparent;
+    border: none;
+    cursor: not-allowed;
+}
+.act-select {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 8px;
+    border-radius: 4px;
+    outline: none;
+    font-size: 0.9rem;
+}
+.outfit-input, .note-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    outline: none;
+    border-bottom: 1px dashed var(--border-color);
+    padding: 5px 0;
+}
+.note-input {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.85rem;
+}
+.outfit-input:read-only {
+    color: var(--text-muted);
+    border: none;
+    cursor: not-allowed;
+}

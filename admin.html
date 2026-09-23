@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Trị Studio - Grandnang Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="image-manager.js"></script>
+</head>
+<body>
+
+    <div id="adminLoginScreen" class="admin-login-wrapper">
+        <div class="admin-login-box">
+            <div class="admin-login-header">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h2>Đăng Nhập Quản Trị</h2>
+                <p>Grandnang Studio - Khu vực nội bộ</p>
+            </div>
+            <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+                <div class="admin-login-group">
+                    <label>Tên đăng nhập</label>
+                    <input type="text" id="adminLoginUsername" required autocomplete="username">
+                </div>
+                <div class="admin-login-group">
+                    <label>Mật khẩu</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="adminLoginPassword" required autocomplete="current-password">
+                        <i class="fa-solid fa-eye toggle-password-icon" onclick="togglePasswordVisibility('adminLoginPassword', this)"></i>
+                    </div>
+                </div>
+                <button type="submit" class="admin-login-submit">Đăng Nhập</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="admin-container" id="adminContainer" style="display:none;">
+        <div class="admin-header">
+            <div>
+                <h2><i class="fa-solid fa-gauge-high"></i> QUẢN TRỊ GRANDNANG STUDIO</h2>
+                <p>Hệ thống quản lý tiến độ, tài chính, chi phí thợ và lịch chụp</p>
+            </div>
+            
+            <div class="header-right-group">
+                <!-- NÚT CHUYỂN GIAO DIỆN: Ép lưu localStorage ngay khi click -->
+                <a href="index.html" target="_blank" onclick="const u = sessionStorage.getItem('grandnang_admin_current_user') || localStorage.getItem('grandnang_admin_current_user'); if(u) localStorage.setItem('grandnang_admin_current_user', u);" class="btn-tab" style="background: rgba(223,183,108,0.15); color: var(--gold); border-color: var(--gold); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Xem Giao Diện Khách Hàng
+                </a>
+
+                <div class="admin-current-user">
+                    <i class="fa-solid fa-circle-user" style="color: var(--gold); font-size: 1.3rem;"></i>
+                    <strong id="adminCurrentUserName"></strong>
+                </div>
+                <button class="btn-admin-logout" onclick="handleAdminLogout()"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
+                <div class="done-counter-badge" onclick="openDoneOrdersModal()">
+                    <i class="fa-solid fa-circle-check"></i> Đơn Đã Hoàn Tất (<span id="doneCountNum">0</span>)
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-menu">
+            <button class="btn-tab active" id="tabOrders" onclick="switchTab('orders')"><i class="fa-solid fa-list-check"></i> Quản Lý Đơn & Tiến Độ</button>
+            <button class="btn-tab" id="tabRevenue" onclick="switchTab('revenue')"><i class="fa-solid fa-chart-line"></i> Thống Kê Doanh Thu & Lãi</button>
+            <button class="btn-tab" id="tabCalendar" onclick="switchTab('calendar')"><i class="fa-solid fa-calendar-days"></i> Lịch Tổng Quan (Google Calendar)</button>
+            <button class="btn-tab" id="tabStaff" onclick="switchTab('staff')"><i class="fa-solid fa-users-gear"></i> Thông Tin Thợ</button>
+            <button class="btn-tab" id="tabImages" onclick="switchTab('images')"><i class="fa-solid fa-images"></i> Quản Lý Ảnh</button>
+            <button class="btn-tab" id="tabAccounts" onclick="switchTab('accounts')"><i class="fa-solid fa-user-lock"></i> Quản Lý Tài Khoản</button>
+        </div>
+
+        <div id="contentOrders" class="tab-content">
+            <h3 style="color: var(--gold); margin-top: 0; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; font-size: 1.1rem;">
+                <i class="fa-solid fa-spinner"></i> Danh Sách Đơn Đang Thực Hiện
+            </h3>
+            <div style="overflow-x: auto; margin-top: 15px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ngày chụp</th>
+                            <th>Mã Đơn</th>
+                            <th>Lớp & Tên Trường</th>
+                            <th>Nền tảng</th>
+                            <th>Cọc</th>
+                            <th>Sĩ số</th>
+                            <th>Gói chụp & Tổng tiền</th>
+                            <th>Tiến độ (Đã chụp / Trả SP)</th>
+                            <th style="text-align: center;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminActiveOrderTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="contentRevenue" class="tab-content" style="display: none;">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span>Doanh thu thực tế (Đơn Đã Xong)</span>
+                    <h3 id="statActualRevenue">0đ</h3>
+                </div>
+                <div class="stat-card">
+                    <span>Tổng chi phí thợ kê khai</span>
+                    <h3 id="statTotalExpense" style="color: #ff6b6b;">0đ</h3>
+                </div>
+                <div class="stat-card">
+                    <span>Lợi nhuận ròng (Lãi thực tế)</span>
+                    <h3 id="statNetProfit" style="color: #4ade80;">0đ</h3>
+                </div>
+                <div class="stat-card">
+                    <span>Tổng tiền cọc đã thu</span>
+                    <h3 id="statTotalDeposit" style="color: #60a5fa;">0đ</h3>
+                </div>
+            </div>
+
+            <h3 class="trend-section-title"><i class="fa-solid fa-arrow-trend-up"></i> Xu Hướng Chụp & Nguồn Khách</h3>
+            <div class="stats-grid" id="trendHighlightGrid"></div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h4><i class="fa-solid fa-calendar-days"></i> Số Đơn Chụp Theo Tháng</h4>
+                    <div class="chart-canvas-wrap"><canvas id="chartByMonth"></canvas></div>
+                </div>
+                <div class="chart-card">
+                    <h4><i class="fa-solid fa-share-nodes"></i> Nguồn Khách Biết Đến (Nền Tảng)</h4>
+                    <div class="chart-canvas-wrap"><canvas id="chartByPlatform"></canvas></div>
+                </div>
+                <div class="chart-card" style="grid-column: 1 / -1;">
+                    <h4><i class="fa-solid fa-hand-holding-dollar"></i> Xu Hướng Đặt Cọc Theo Tháng</h4>
+                    <div class="chart-canvas-wrap chart-canvas-wide"><canvas id="chartDepositTrend"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contentCalendar" class="tab-content" style="display: none;">
+            <div class="cal-header-nav">
+                <button class="cal-nav-btn" onclick="changeMonth(-1)"><i class="fa-solid fa-chevron-left"></i> Tháng trước</button>
+                <h3 id="calCurrentMonthTitle" style="color: var(--gold); margin: 0; font-size: 1.2rem;">Tháng 9, 2026</h3>
+                <button class="cal-nav-btn" onclick="changeMonth(1)">Tháng sau <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div class="calendar-grid-header">
+                <div>Thứ 2</div><div>Thứ 3</div><div>Thứ 4</div><div>Thứ 5</div><div>Thứ 6</div><div>Thứ 7</div><div>Chủ Nhật</div>
+            </div>
+            <div id="calendarGridDays" class="calendar-grid-body"></div>
+        </div>
+
+        <div id="contentStaff" class="tab-content" style="display: none;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 15px;">
+                <div style="background: var(--bg-color); border: 1px solid var(--border-color); padding: 20px; border-radius: 8px;">
+                    <h4 style="color: var(--gold); margin: 0 0 5px 0; font-size: 1.1rem;">Võ Hoàng Nghi</h4>
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">Lead Photographer / Quản trị</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="contentImages" class="tab-content" style="display: none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin-bottom:10px;">
+                <h3 style="color:var(--gold); margin:0; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; font-size: 1.1rem;">
+                    <i class="fa-solid fa-images"></i> Quản Lý Ảnh Website
+                </h3>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;">Bấm vào khung ảnh muốn đổi, chọn ảnh mới trên máy — ảnh sẽ tự cập nhật lên website, không cần sửa code.</p>
+            <div id="imageManagerContainer"></div>
+        </div>
+
+        <div id="contentAccounts" class="tab-content" style="display: none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin-bottom:20px;">
+                <h3 style="color:var(--gold); margin:0; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; font-size: 1.1rem;">
+                    <i class="fa-solid fa-users-gear"></i> Danh Sách Tài Khoản Truy Cập
+                </h3>
+                <div style="display:flex; gap:10px; flex-wrap: wrap;">
+                    <button class="btn-tab" style="background: var(--gold); color:#000; border-color:var(--gold);" onclick="openCreateAccountModal('admin')"><i class="fa-solid fa-user-shield"></i> Tạo Tài Khoản Admin</button>
+                    <button class="btn-tab" style="background:#60a5fa; color:#000; border-color:#60a5fa;" onclick="openCreateAccountModal('member')"><i class="fa-solid fa-user"></i> Tạo Tài Khoản Thành Viên</button>
+                </div>
+            </div>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tên đăng nhập</th>
+                            <th>Họ tên</th>
+                            <th>Vai trò</th>
+                            <th>Ngày tạo</th>
+                            <th style="text-align: center;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminAccountsTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="customModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 id="modalTitle" class="modal-title">Xác nhận</h3>
+            <div id="modalBody" class="modal-content">Nội dung...</div>
+            <div id="modalInputArea" style="margin-bottom: 15px;"></div>
+            <div class="modal-buttons">
+                <button id="modalBtnCancel" class="modal-btn modal-btn-cancel" onclick="closeModal()">Hủy bỏ</button>
+                <button id="modalBtnConfirm" class="modal-btn modal-btn-confirm">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-auth.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

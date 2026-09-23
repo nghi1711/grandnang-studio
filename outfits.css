@@ -1,0 +1,18 @@
+.outfits-container-wrapper { padding: 60px 20px; min-height: 100vh; background-color: var(--bg-dark); }
+.outfits-form-box { max-width: 900px; margin: 0 auto; background-color: rgba(3, 43, 29, 0.5); border: 1px solid var(--border-color); border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.outfits-box-header { text-align: center; margin-bottom: 40px; }
+.outfits-box-header h2 { color: var(--gold); font-size: 1.6rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
+.outfits-box-header p { color: var(--text-muted); font-size: 1rem; }
+.outfit-category-block { margin-bottom: 40px; }
+.outfit-category-title { color: var(--gold); font-size: 1.1rem; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed rgba(223, 183, 108, 0.3); display: flex; align-items: center; gap: 10px; }
+.outfit-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+.outfit-card-item { background-color: #011410; border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+.outfit-card-item:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 10px 25px rgba(223, 183, 108, 0.2); }
+.outfit-card-img { width: 100%; aspect-ratio: 3/4; background-color: #000; position: relative; }
+.outfit-card-img::after { content: "\f06e"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 0, 0, 0.6); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; opacity: 0; transform: scale(0.8); transition: all 0.25s ease; }
+.outfit-card-item:hover .outfit-card-img::after { opacity: 1; transform: scale(1); }
+.outfit-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.outfit-card-info { padding: 12px; display: flex; flex-direction: column; justify-content: center; }
+.outfit-card-info h4 { color: #fff; font-size: 0.95rem; margin: 0 0 5px 0; font-weight: 500; }
+.outfit-card-price { color: var(--gold); font-size: 0.85rem; margin: 0; font-weight: bold; }
+@media (max-width: 768px) { .outfit-grid-4 { grid-template-columns: repeat(2, 1fr); } .outfits-form-box { padding: 20px; } }

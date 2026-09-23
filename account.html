@@ -1,0 +1,125 @@
+<div class="account-page-wrapper">
+    <div class="account-container">
+        
+        <!-- ================= PHẦN 1: AUTH ================= -->
+        <div id="authSection" class="auth-section">
+            <div class="auth-tabs" id="authTabsContainer">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Đăng Nhập</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">Đăng Ký Mới</button>
+            </div>
+
+            <!-- Form Đăng Nhập -->
+            <!-- Ghi chú: Ô "Tên đăng nhập / SĐT" cho phép đăng nhập bằng 1 trong 2: tên đăng nhập HOẶC số điện thoại đã đăng ký (xử lý ở account.js -> findCustomerAccountByLogin) -->
+            <form id="loginForm" class="auth-form active" onsubmit="handleLogin(event)">
+                <div class="form-group"><label>Tên đăng nhập hoặc Số điện thoại</label><input type="text" id="loginUsername" required></div>
+                <div class="form-group">
+                    <label>Mật khẩu</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="loginPassword" required>
+                        <i class="fa-solid fa-eye toggle-password-icon" onclick="togglePasswordVisibility('loginPassword', this)"></i>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit-all">Đăng Nhập</button>
+            </form>
+
+            <!-- Form Đăng Ký -->
+            <form id="registerForm" class="auth-form" onsubmit="handleRegister(event)">
+                <div class="form-grid">
+                    <div class="form-group"><label>Họ và tên</label><input type="text" id="regFullName" required></div>
+                    <div class="form-group"><label>Lớp</label><input type="text" id="regClass" required></div>
+                    <div class="form-group full-width"><label>Chức vụ trong lớp</label><input type="text" id="regRole" required></div>
+                    <div class="form-group"><label>Tên đăng nhập</label><input type="text" id="regUsername" required></div>
+                    <div class="form-group">
+                        <label>Mật khẩu</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="regPassword" required>
+                            <i class="fa-solid fa-eye toggle-password-icon" onclick="togglePasswordVisibility('regPassword', this)"></i>
+                        </div>
+                    </div>
+                    <!-- Ô nhập lại mật khẩu: bắt buộc trùng khớp với regPassword, kiểm tra ở account.js -> handleRegister -->
+                    <div class="form-group">
+                        <label>Nhập lại mật khẩu</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="regPasswordConfirm" required>
+                            <i class="fa-solid fa-eye toggle-password-icon" onclick="togglePasswordVisibility('regPasswordConfirm', this)"></i>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>Gmail</label><input type="email" id="regEmail" required></div>
+                    <div class="form-group"><label>Số điện thoại</label><input type="tel" id="regPhone" required></div>
+                </div>
+                <button type="submit" class="btn-submit-all" style="margin-top: 20px;">Tạo Tài Khoản</button>
+            </form>
+
+            <!-- Form Xác Nhận OTP (Nằm ẩn, chỉ hiện khi đăng ký) -->
+            <form id="otpForm" class="auth-form" onsubmit="handleVerifyOTP(event)">
+                <h3 style="color: var(--gold); text-align: center; margin-bottom: 10px;">Xác Nhận Email</h3>
+                <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">
+                    Mã xác nhận 6 số đã được gửi đến <br><strong id="showRegEmail" style="color: #fff;"></strong>.<br>
+                    <span style="color: #ff6b6b; font-style: italic;">(Mã thử nghiệm hệ thống là: 123456)</span>
+                </p>
+                <div class="form-group">
+                    <input type="text" id="regOtpCode" placeholder="Nhập mã 6 số..." required style="text-align: center; font-size: 1.5rem; letter-spacing: 10px; font-weight: bold;">
+                </div>
+                <button type="submit" class="btn-submit-all" style="margin-top: 25px;">Xác Nhận & Hoàn Tất</button>
+                <p class="forgot-pass" onclick="switchAuthTab('register')">Quay lại chỉnh sửa thông tin</p>
+            </form>
+        </div>
+
+        <!-- ================= PHẦN 2: DASHBOARD ================= -->
+        <div id="dashboardSection" class="dashboard-section" style="display: none;">
+            <div class="dashboard-header">
+                <h2>Xin chào, <span id="dashFullName" style="color: var(--gold);"></span>!</h2>
+                <button onclick="handleLogout()" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
+            </div>
+            
+            <div class="dashboard-layout" style="display: flex; gap: 30px; align-items: flex-start;">
+                <!-- CỘT TRÁI (MENU) -->
+                <div style="width: 250px; display: flex; flex-direction: column; gap: 10px; flex-shrink: 0;">
+                    <button class="dash-tab-btn" onclick="switchDashTab('info')" id="btnTabInfo" style="text-align: left; padding: 15px 20px; background: rgba(223,183,108,0.1); border: 1px solid var(--gold); color: var(--gold); border-radius: 6px; cursor: pointer; font-weight: bold;"><i class="fa-solid fa-user"></i> Thông tin & Lịch đặt</button>
+                    <button class="dash-tab-btn" onclick="switchDashTab('password')" id="btnTabPass" style="text-align: left; padding: 15px 20px; background: #021a15; border: 1px solid var(--border-color); color: var(--text-muted); border-radius: 6px; cursor: pointer; font-weight: bold;"><i class="fa-solid fa-key"></i> Đổi mật khẩu</button>
+                </div>
+
+                <!-- CỘT PHẢI (NỘI DUNG) -->
+                <div style="flex: 1;">
+                    <!-- NỘI DUNG 1: THÔNG TIN & LỊCH ĐẶT -->
+                    <div id="dash-info" class="dash-content-pane" style="display: block;">
+                        <div class="profile-card" style="margin-bottom: 20px;">
+                            <h3><i class="fa-solid fa-user-check"></i> Thông Tin Lớp</h3>
+                            <p><strong>Lớp:</strong> <span id="dashClass"></span></p>
+                            <p><strong>Chức vụ:</strong> <span id="dashRole"></span></p>
+                            <p><strong>Username:</strong> <span id="dashUsername"></span></p>
+                            <p><strong>SĐT:</strong> <span id="dashPhone"></span></p>
+                            <p><strong>Email:</strong> <span id="dashEmail"></span></p>
+                        </div>
+                        <div class="booking-history-card">
+                            <h3><i class="fa-solid fa-calendar-check"></i> Lịch Chụp Đã Đặt</h3>
+                            <div id="bookingListContainer"></div>
+                        </div>
+                    </div>
+
+                    <!-- NỘI DUNG 2: ĐỔI MẬT KHẨU -->
+                    <div id="dash-password" class="dash-content-pane" style="display: none;">
+                        <div class="profile-card">
+                            <h3><i class="fa-solid fa-key"></i> Thay Đổi Mật Khẩu</h3>
+                            <form id="changePassForm" onsubmit="handleChangePassword(event)" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+                                <div style="display: flex; flex-direction: column; gap: 5px;">
+                                    <label style="color: var(--text-muted); font-size: 0.9rem;">Mật khẩu hiện tại</label>
+                                    <div class="password-input-wrapper">
+                                        <input type="password" id="oldPass" required style="width:100%; padding: 12px; background: #021a15; border: 1px solid var(--border-color); color: #fff; border-radius: 4px; outline: none;">
+                                        <i class="fa-solid fa-eye toggle-password-icon" onclick="togglePasswordVisibility('oldPass', this)"></i>
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 5px;">
+                                    <label style="color: var(--text-muted); font-size: 0.9rem;">Mật khẩu mới</label>
+                                    <div class="password-input-wrapper">
+                                        <input type="password" id="newPass" required style="width:100%; padding: 12px; background: #021a15; border: 1px solid var(--border-color); color: #fff; border-radius: 4px; outline: none;">
+                                        <i class="fa-solid fa-eye toggle-password-icon" onclick="togglePasswordVisibility('newPass', this)"></i>
+                                    </div>
+                                </div>
+                                <button type="submit" style="background: var(--gold); color: #000; border: none; padding: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 10px;">Cập Nhật Mật Khẩu</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
